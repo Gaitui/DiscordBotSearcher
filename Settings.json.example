@@ -1,0 +1,8 @@
+{
+  "TOKEN": "Your Discord Token",
+  "WAITTIME": "Wait time between single search(Second)",
+  "INITPAGE": "Initial search pages",
+  "MAXPAGE": "Search pages",
+  "AUTOWAITMIN": "Min wait time between auto search(Second)",
+  "AUTOWAITMAX": "Max wait time between auto search(Second)"
+}
