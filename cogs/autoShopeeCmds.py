@@ -235,7 +235,7 @@ class autoShopee(commands.Cog):
     async def shopeestop(self, interaction, keyword: str):
         channelid = str(interaction.channel.id)
         self.searchStatusLock.acquire()
-        if self.searchStatus.__contains__(keyword) and channelid in searchStatus[keyword]['channel']:
+        if self.searchStatus.__contains__(keyword) and channelid in self.searchStatus[keyword]['channel']:
                 self.searchStatus[keyword]['channel'].remove(channelid)
                 if len(self.searchStatus[keyword]['channel'])== 0:
                     self.searchStatus.pop(keyword)
