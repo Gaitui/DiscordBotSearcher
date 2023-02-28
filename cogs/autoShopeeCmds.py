@@ -62,7 +62,7 @@ class autoShopee(commands.Cog):
             await interaction.response.send_message('窩不知道你要刪什麼...')
             return
         channelid = str(interaction.channel.id)
-        if self.searchStatus.__contains__(keyword) and channelid in searchStatus[keyword]['channel']:
+        if self.searchStatus.__contains__(keyword) and channelid in self.searchStatus[keyword]['channel']:
             await interaction.response.send_message(f'看起來{keyword}正在執行，請先使用/shopeestop停止後再刪除')
             return
         status, searchData = readJson('autoShopeeData/searchData.json')

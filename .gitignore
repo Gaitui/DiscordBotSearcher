@@ -1,0 +1,13 @@
+.idea/
+
+*.csv
+
+*.json
+
+__pycache__/
+
+cogs/test.py
+
+test.*
+
+log/*
