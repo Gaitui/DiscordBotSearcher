@@ -340,7 +340,7 @@ class autoShopee(commands.Cog):
                             for channel in searchStatus[keyword]['channel']:
                                 if self.searchData[keyword].__contains__(channel):
                                     if len(self.searchData[keyword][channel]['blacklist']):
-                                        responsedf = addData[addData['Name'].str.lower().str.contains('|'.join(self.searchData[keyword][channel]['blacklist'])) == False]
+                                        responsedf = addData[addData['Name'].str.lower().str.contains('|'.join(self.searchData[keyword][channel]['blacklist'])) == False].reset_index(drop=True)
                                     else:
                                         responsedf = addData
                                     logging.info('Keyword: %(keyword)s send %(len)s new result to %(channel)s!',
