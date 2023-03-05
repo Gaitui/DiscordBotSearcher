@@ -356,7 +356,7 @@ class autoShopee(commands.Cog):
                                                 embedsNow += 1
                                             embeds[embedsNow].add_field(
                                                 name=f"商品名: {responsedf.loc[i]['Name']}\n價格: {responsedf.loc[i]['Price']}",
-                                                value=f"https://shopee.tw/{responsedf.loc[i]['Name'].replace(' ', '-')}-i.{responsedf.loc[i]['ShopId']}.{responsedf.loc[i]['Itemid']}",
+                                                value=f"https://shopee.tw/{responsedf.loc[i]['Name'].replace('#', '').replace(' ', '-')}-i.{responsedf.loc[i]['ShopId']}.{responsedf.loc[i]['Itemid']}",
                                                 inline=False)
                                         for i in range(len(embeds)):
                                             await channelid.send(embed=embeds[i])
