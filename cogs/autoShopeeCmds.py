@@ -18,6 +18,7 @@ class autoShopee(commands.Cog):
         self.isRun = False
         self.modify = False
         self.check = None
+        self.startChannelId = None
         self.initPage = 3
         self.maxPage = 1
         self.minWait = 60
@@ -266,6 +267,7 @@ class autoShopee(commands.Cog):
             return
         self.modify = True
         self.shopeerunning.start()
+        self.startChannelId = str(interaction.channel.id)
         await interaction.response.send_message('完成啟動Auto Shopee!')
 
     @app_commands.command(name='shopeeshutdown', description='Stop auto shopee.')
@@ -292,7 +294,8 @@ class autoShopee(commands.Cog):
             status, self.searchData = readJson('autoShopeeData/searchData.json')
             self.modify = False
             if not status:
-                await interaction.response.send_message('讀取searchData.json錯誤，請檢查後再重新啟動')
+                startChannel = self.bot.get_channel(int(self.startChannelId))
+                await startChannel.send('讀取searchData.json錯誤，請檢查後再重新啟動')
                 return
         self.searchStatusLock.acquire()
         searchStatus = self.searchStatus
@@ -369,7 +372,8 @@ class autoShopee(commands.Cog):
                     self.searchStatusLock.release()
                 else:
                     logging.info('Keyword: %(keyword)s search Failed!', {'keyword': keyword})
-                    await interaction.channel.send('搜尋發生錯誤')
+                    startChannel = self.bot.get_channel(int(self.startChannelId))
+                    await startChannel.send('搜尋發生錯誤')
                 sleepTime = random.randint(self.minWait, self.maxWait)
                 logging.info('Next Search start in %(sleepTime)s s.', {'sleepTime': sleepTime})
                 await asyncio.sleep(sleepTime)
